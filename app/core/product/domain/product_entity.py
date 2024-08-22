@@ -22,12 +22,12 @@ class Product(BaseEntity):
     :cvar uuid: Уникальный идентификатор продукта.
     :cvar name: Наименование продукта.
     :cvar category: Категория продукта.
-    :cvar available_count: Доступное количество продукта в штуках или килограммах.
     :cvar price: Цена продукта за 1 единицу.
+    :cvar available_count: Доступное количество продукта в штуках или килограммах.
     """
 
     uuid: ProductUUID
     name: ProductName
     category: ProductCategory
-    available_count: ProductCount
     price: Price = Price(Decimal(0))
+    available_count: ProductCount = ProductCount(0)
