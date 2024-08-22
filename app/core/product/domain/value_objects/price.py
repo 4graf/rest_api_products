@@ -17,7 +17,7 @@ class Price:
     :ivar price: Цена.
     """
 
-    price: Decimal = Decimal(0)
+    price: Decimal
 
     def __post_init__(self):
         """

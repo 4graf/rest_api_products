@@ -12,3 +12,4 @@ class ProductCategory(Enum):
     FOOD = "FOOD"
     TECHNIQUE = "TECHNIC"
     SPORT = "SPORT"
+    OTHER = "OTHER"

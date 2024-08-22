@@ -4,6 +4,8 @@
 
 from dataclasses import dataclass
 
+from decimal import Decimal
+
 from app.core.product.domain.value_objects.price import Price
 from app.core.product.domain.value_objects.product_category import ProductCategory
 from app.core.product.domain.value_objects.product_count import ProductCount
@@ -20,12 +22,12 @@ class Product(BaseEntity):
     :cvar uuid: Уникальный идентификатор продукта.
     :cvar name: Наименование продукта.
     :cvar category: Категория продукта.
-    :cvar price: Цена продукта за 1 единицу.
     :cvar available_count: Доступное количество продукта в штуках или килограммах.
+    :cvar price: Цена продукта за 1 единицу.
     """
 
     uuid: ProductUUID
     name: ProductName
     category: ProductCategory
-    price: Price
     available_count: ProductCount
+    price: Price = Price(Decimal(0))
