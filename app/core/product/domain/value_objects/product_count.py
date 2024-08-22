@@ -13,16 +13,16 @@ class ProductCount:
     """
     Объект значение количества продукта.
 
-    :ivar count: Количество продукта в штуках или килограммах.
+    :ivar count: Количество продукта в штуках.
     """
 
-    count: int | float
+    count: int
 
     def __post_init__(self):
         """
         Проверяет количество на тип данных и корректность.
         """
-        if not isinstance(self.count, (int, float)):
-            raise ProductTypeError(extra_msg_exception='Количество продукта должно быть типа `int` или `float`')
+        if not isinstance(self.count, int):
+            raise ProductTypeError(extra_msg_exception='Количество продукта должно быть типа `int`')
         if self.count < 0:
             raise ProductCountLessThanZeroError()
