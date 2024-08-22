@@ -25,7 +25,7 @@ class ProductName:
         """
         if not isinstance(self.name, str):
             raise ProductTypeError(extra_msg_exception='Наименование продукта должно быть типом `str`')
-        if len(self.name) < 5:
-            raise MinLengthProductNameError(min_length=5)
-        if len(self.name) > 500:
-            raise MaxLengthProductNameError(max_length=500)
+        if len(self.name) < 3:
+            raise MinLengthProductNameError(min_length=3)
+        if len(self.name) > 100:
+            raise MaxLengthProductNameError(max_length=100)
