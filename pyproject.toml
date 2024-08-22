@@ -1,12 +1,17 @@
 [tool.poetry]
 name = "rest-api-products"
 version = "0.1.0"
-description = ""
+description = "Тестовое задания на Python разработчика"
 authors = ["4graf <senya.nabatov@mail.ru>"]
 readme = "README.md"
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.12"
+pydantic = "^2.8.2"
+sqlalchemy = "^2.0.32"
+python-dotenv = "^1.0.1"
+pydantic-settings = "^2.4.0"
 
 
 [build-system]
