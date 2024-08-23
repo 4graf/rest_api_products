@@ -81,17 +81,18 @@ class ProductService:
         products = await self.product_repository.get_by_filter(product_filter_params=product_filter_params)
         return [ProductReadSchema.from_entity(product) for product in products]
 
-    async def update_product(self, data: ProductUpdateSchema) -> ProductReadSchema:
+    async def update_product(self, id_: UUID, data: ProductUpdateSchema) -> ProductReadSchema:
         """
         Обновляет продукт.
 
+        :param id_: Уникальный идентификатор продукта для обновления.
         :param data: Данные для обновления продукта.
         :return: Информация обновленного продукта.
         :raise ProductNotFoundException: Обновление продукта, который не найден.
         :raise ProductExistsException: Добавление продукта, который уже существует.
         """
         new_product = Product(
-            uuid=ProductUUID(data.uuid),
+            uuid=ProductUUID(id_),
             name=ProductName(data.name),
             category=data.category,
             price=Price(data.price),
