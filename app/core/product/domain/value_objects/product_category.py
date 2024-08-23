@@ -10,6 +10,6 @@ class ProductCategory(Enum):
     Перечисление категорий продуктов.
     """
     FOOD = "FOOD"
-    TECHNIQUE = "TECHNIC"
+    TECHNIQUE = "TECHNIQUE"
     SPORT = "SPORT"
     OTHER = "OTHER"
