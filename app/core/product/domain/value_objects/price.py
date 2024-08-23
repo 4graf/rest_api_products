@@ -3,10 +3,13 @@
 """
 
 from dataclasses import dataclass
+from decimal import Decimal, InvalidOperation, ROUND_UP
 
-from decimal import Decimal
+from _decimal import Context
+
 from app.core.product.domain.exceptions.base_product_exceptions import ProductTypeError
-from app.core.product.domain.exceptions.product_price_exceptions import ProductPriceLessThanZeroError
+from app.core.product.domain.exceptions.product_price_exceptions import ProductPriceLessThanZeroError, \
+    MaxValueProductPriceError
 
 
 @dataclass(slots=True)
@@ -17,13 +20,18 @@ class Price:
     :ivar price: Цена.
     """
 
-    price: Decimal
+    price: Decimal | int | float | str
 
     def __post_init__(self):
         """
         Проверяет цену на тип данных и корректность.
         """
-        if not isinstance(self.price, Decimal):
-            raise ProductTypeError(extra_msg_exception='Цена должна быть типа `Decimal`')
+        try:
+            self.price = Decimal(str(self.price)).quantize(Decimal('0.01'), rounding=ROUND_UP)
+        except InvalidOperation:
+            raise ProductTypeError(extra_msg_exception='Цена должна быть числом')
+
         if self.price < 0:
             raise ProductPriceLessThanZeroError()
+        if self.price > 1_000_000_000:
+            raise MaxValueProductPriceError(max_price=1_000_000_000)

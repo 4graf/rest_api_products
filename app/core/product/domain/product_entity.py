@@ -1,8 +1,8 @@
 """
 Сущность продукта.
 """
-
-from dataclasses import dataclass
+import copy
+from dataclasses import dataclass, field
 
 from decimal import Decimal
 
@@ -29,5 +29,5 @@ class Product(BaseEntity):
     uuid: ProductUUID
     name: ProductName
     category: ProductCategory
-    price: Price = Price(Decimal(0))
-    available_count: ProductCount = ProductCount(0)
+    price: Price = field(default_factory=lambda: copy.deepcopy(Price(Decimal(0))))
+    available_count: ProductCount = field(default_factory=lambda: copy.deepcopy(ProductCount(0)))

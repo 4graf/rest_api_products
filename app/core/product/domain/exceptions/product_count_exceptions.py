@@ -16,3 +16,19 @@ class ProductCountLessThanZeroError(ProductValidationException):
         :param msg: Сообщение исключения.
         """
         super().__init__(msg)
+
+
+class MaxValueProductCountError(ProductValidationException):
+    """
+    Исключение, возникающее при количестве продукта больше максимального.
+    """
+    def __init__(self, msg: str = 'Количество продукта больше максимального', max_count: int = None):
+        """
+        Конструктор MaxValueProductCountError.
+
+        :param msg: Сообщение исключения.
+        :param max_count: Максимальное количество продукта.
+        """
+        if max_count:
+            msg = f'{msg} [{max_count}]'
+        super().__init__(msg)
