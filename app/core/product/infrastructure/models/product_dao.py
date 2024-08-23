@@ -32,9 +32,9 @@ class ProductDao(BaseDao):
     __tablename__ = "products"
 
     id: Mapped[UUID] = mapped_column(primary_key=True)
-    name: Mapped[str] = mapped_column(String)
+    name: Mapped[str] = mapped_column(String, unique=True)
     category: Mapped[enum.Enum] = mapped_column(Enum(ProductCategory))
-    price: Mapped[Decimal] = mapped_column(Numeric(11, 2), default="0")
+    price: Mapped[Decimal] = mapped_column(Numeric(12, 2), default="0")
     available_count: Mapped[int] = mapped_column(Integer, default="0")
 
     def to_entity(self) -> Product:
